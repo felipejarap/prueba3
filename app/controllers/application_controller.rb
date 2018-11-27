@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
      #nos permite ver la informacion de todo
+    
     def index
         @todos = Todo.all
     end
