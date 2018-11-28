@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-     #nos permite ver la informacion de todo
     
+     #nos permite ver la informacion de todo
     def index
         @todos = Todo.all
     end
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     end
     #metodo en el cual nos permite pasar valores a sus atributos para crear la isntancia 
     def create
-        @todo = Todo.new(todo_parametros)
+        @todo = Todo.new(todo_params)
         if @todo.save
             redirect_to @todo
         else
@@ -28,13 +28,12 @@ class ApplicationController < ActionController::Base
     #metodo para actualizar los parametros de todo en la base de datos
     def update
         @todo = Todo.find(params[:id])
-        if @todo.update(todo_parametros)
-            redirect_to @todo
+        if @todo.update(todo_params)
+            redirect_to todos_path
         else
             render 'edit'
         end
     end
-
     #metodo en el cual buscamos la clave primaria para luego eliminar de la base datos
     def destroy
         @todo = Todo.find(params[:id])
@@ -42,10 +41,20 @@ class ApplicationController < ActionController::Base
 
         redirect_to todos_path
     end
+    #metodo para que el campo completed quede en true
+    def complete
+        @todo = Todo.find(params[:id])
+        @todo.update(completed:true) 
+        redirect_to todos_path
+    end
 
+
+    def list
+        @todos = Todo.all
+    end
     private
     #metodo que ayuda a recargar los parametos de la clase Todo
-      def todo_parametros
+      def todo_params
           params.require(:todo).permit(:description, :completed)
       end
 end

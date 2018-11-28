@@ -17,9 +17,11 @@
           <td><%= todo.description %></td>
           <td><%= link_to 'Show', todo, class:'btn btn-success' %></td>
           <td><%= link_to 'Edit', edit_todo_path(todo), class:'btn btn-info' %></td>
-          <td><%= link_to 'Destroy',todo,class: "btn btn-danger",
+          <td><%= link_to 'Destroy',todo,class: "btn btn-warning",
               method: :delete,
               data: { confirm: 'Estás seguro de eliminarlo? ' } %></td>
+          <td><%= link_to 'Completed',complete_path(todo),class: "btn btn-danger",
+              data: { confirm: 'Estás seguro de completarlo? ' } %></td>
         </tr>
       <% end %>
     </tbody>
