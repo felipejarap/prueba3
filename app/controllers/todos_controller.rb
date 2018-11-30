@@ -1,11 +1,11 @@
 class TodosController < ApplicationController
-	before_action :set_todo, only:[:show, :edit, :update, :destroy, :complete]
+    before_action :set_todo, only:[:show, :edit, :update, :destroy, :complete]
      #nos permite ver la informacion de todo
     def index
         @todos = Todo.all
     end
     #metodo en el cual creamos para realizar instancia
-    def news
+    def new
         @todo = Todo.new
     end
     #nos permite ver el valor de una instancia en especifico
@@ -15,7 +15,7 @@ class TodosController < ApplicationController
     def create
         @todo = Todo.new(todo_params)
         if @todo.save
-            redirect_to @todo
+            redirect_to todo_path(@todo)
         else
             render 'new'
         end
@@ -28,34 +28,31 @@ class TodosController < ApplicationController
     def update
        
         if @todo.update(todo_params)
-            redirect_to todos_path
+            redirect_to index_path
         else
             render 'edit'
         end
     end
     #metodo en el cual buscamos la clave primaria para luego eliminar de la base datos
     def destroy
-       
         @todo.destroy
-
-        redirect_to todos_path
+        redirect_to index_path
     end
     #metodo para que el campo completed quede en true
     def complete
         @todo.update(completed:true) 
-        redirect_to todos_path
+        redirect_to index_path
     end
 
 
     def list
-        
-         @todos = Todo.all
+        @todos = Todo.all
     end
 
     private
     
     def set_todo
-         @todo = Todo.find(params[:id])
+        @todo = Todo.find(params[:id])
     end
         #metodo que ayuda a recargar los parametos de la clase Todo
       def todo_params

@@ -1,17 +1,17 @@
-<h1>formulario</h1>
-<%= form_with model: @todo, local: true do |form|%>
+<h1> formulario </h1>
+<%= form_with model: @todo, local: true, url: new_path do | form |%>
 
-	<div>
-		<%= form.text_field :description %>
+	<div class="form-control-lg">
+		<%= form.text_field :description%>
 	</div>
 	
-	<div>
-		<%= form.check_box :completed %>
+	<div class="form-control-lg">
+		<%= form.check_box :completado%>
 	</div>
 
-	<div>
-		<%= form.submit class: "btn btn-primary" %>
-	<% end %>
+	<div  class="form-control-lg">
+		<%= form.submit class: "btn btn-primary"%>
+	<% end%>
 	</div>
-
-<%= link_to 'Back', todos_path %>
+<br>
+<%= link_to 'Back', index_path%>

@@ -24,13 +24,13 @@
     <a class="navbar-brand" href="#">Pueba rails</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" <%=link_to 'index', todos_path %></a>
+        <a class="nav-link" <%=link_to 'index', index_path %></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">landing</a>
+        <a class="nav-link" <%=link_to 'list', list_path%></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" <%= link_to 'New Todo', new_todo_path %></a>
+        <a class="nav-link" <%=link_to 'New Todo', new_path %></a>
       </li>
     </ul>
   </div>
